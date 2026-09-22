@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Thời khóa biểu{% endblock %}
+{% block content %}
+<div class="page-heading">
+    <div><p class="eyebrow">LỊCH CÁ NHÂN</p><h1>Thời khóa biểu</h1></div>
+    <a class="button button-secondary" href="{% url 'registrations:course_list' %}">Thêm học phần</a>
+</div>
+<div class="schedule-grid">
+{% for enrollment in enrollments %}
+    <article class="schedule-item">
+        <div class="schedule-day">Thứ {{ enrollment.course_class.weekday }}<br><strong>Tiết {{ enrollment.course_class.start_period }}-{{ enrollment.course_class.end_period }}</strong></div>
+        <div><h2>{{ enrollment.course_class.course.name }}</h2><p>{{ enrollment.course_class.code }} · {{ enrollment.course_class.room }}</p><p class="muted">{{ enrollment.course_class.lecturer }}</p></div>
+        <form method="post" action="{% url 'registrations:cancel' enrollment.course_class.pk %}">
+            {% csrf_token %}<button class="button button-danger" type="submit">Hủy đăng ký</button>
+        </form>
+    </article>
+{% empty %}
+    <div class="empty-panel"><h2>Chưa có học phần</h2><p class="muted">Hãy chọn lớp học phần đầu tiên của bạn.</p><a class="button button-primary" href="{% url 'registrations:course_list' %}">Xem danh sách môn</a></div>
+{% endfor %}
+</div>
+{% endblock %}
