@@ -1,6 +1,23 @@
 __pycache__/
 *.pyc
 .venv/
+venv/
+env/
+/.vscode/
+/.idea/
 db.sqlite3
 .env
 staticfiles/
+# Môi trường ảo Python 
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Cấu hình máy cá nhân
+.vscode/
+.idea/
+
+# File biến môi trường chứa mật khẩu DB
+.env
+>>>>>>> 1c594a85505f635996e6cfd93411fb4af8d10dfd
