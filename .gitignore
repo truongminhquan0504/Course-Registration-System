@@ -1,0 +1,12 @@
+# Môi trường ảo Python 
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Cấu hình máy cá nhân
+.vscode/
+.idea/
+
+# File biến môi trường chứa mật khẩu DB
+.env
