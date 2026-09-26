@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Tạo tài khoản{% endblock %}
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-intro">
+        <p class="eyebrow">BẮT ĐẦU HỌC TẬP</p>
+        <h1>Một tài khoản, toàn bộ học kỳ.</h1>
+        <p class="muted">Lưu lịch học, đăng ký học phần và theo dõi tiến độ của bạn trong một nơi.</p>
+    </div>
+    <div class="auth-card">
+        <p class="eyebrow">TÀI KHOẢN MỚI</p>
+        <h2>Tạo tài khoản</h2>
+        <p class="muted">Điền thông tin để bắt đầu đăng ký học phần.</p>
+        <form method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}<div class="form-error">{{ form.non_field_errors }}</div>{% endif %}
+            {% for field in form %}
+            <div class="form-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}<small class="field-help">{{ field.help_text|safe }}</small>{% endif %}
+                {{ field.errors }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="button button-primary">Tạo tài khoản</button>
+        </form>
+        <p class="auth-switch">Đã có tài khoản? <a href="{% url 'login' %}">Đăng nhập</a></p>
+    </div>
+</section>
+{% endblock %}

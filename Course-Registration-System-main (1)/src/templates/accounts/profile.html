@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Trang cá nhân{% endblock %}
+{% block content %}
+<section class="profile-header">
+    <div class="avatar">{{ user.username|first|upper }}</div>
+    <div><p class="eyebrow">TÀI KHOẢN SINH VIÊN</p><h1>{{ user.get_full_name|default:user.username }}</h1><p class="muted">@{{ user.username }} · {{ user.email|default:'Chưa cập nhật email' }}</p></div>
+    <a class="button button-secondary" href="{% url 'accounts:edit_profile' %}">Chỉnh sửa hồ sơ</a>
+</section>
+<div class="profile-grid">
+    <article class="info-panel"><p class="eyebrow">THÔNG TIN</p><h2>Thông tin cá nhân</h2><dl class="details"><dt>Tên đăng nhập</dt><dd>{{ user.username }}</dd><dt>Họ tên</dt><dd>{{ user.get_full_name|default:'Chưa cập nhật' }}</dd><dt>Email</dt><dd>{{ user.email|default:'Chưa cập nhật' }}</dd><dt>Ngày tham gia</dt><dd>{{ user.date_joined|date:'d/m/Y' }}</dd></dl></article>
+    <article class="info-panel accent-panel"><p class="eyebrow">HỌC TẬP</p><h2>Hoạt động học kỳ</h2><div class="big-stat">{{ enrollments_count }}</div><p class="muted">học phần đang đăng ký</p><a href="{% url 'registrations:schedule' %}" class="text-link">Mở thời khóa biểu →</a></article>
+</div>
+{% endblock %}

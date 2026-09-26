@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Đăng nhập{% endblock %}
+{% block content %}
+<section class="auth-card">
+    <h1>Đăng nhập</h1>
+    <p class="muted">Đăng nhập để quản lý các lớp học phần của bạn.</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {% if form.non_field_errors %}
+            <div class="form-error">{{ form.non_field_errors }}</div>
+        {% endif %}
+        <div class="form-field">
+            <label for="id_username">Tên đăng nhập</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+        <div class="form-field">
+            <label for="id_password">Mật khẩu</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <button type="submit" class="button button-primary">Đăng nhập</button>
+    </form>
+    <p class="auth-switch">Chưa có tài khoản? <a href="{% url 'accounts:signup' %}">Tạo tài khoản</a></p>
+</section>
+{% endblock %}

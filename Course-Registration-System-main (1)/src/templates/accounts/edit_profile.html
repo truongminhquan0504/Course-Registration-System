@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block title %}Chỉnh sửa hồ sơ{% endblock %}
+{% block content %}
+<section class="form-page"><p class="eyebrow">TÀI KHOẢN</p><h1>Chỉnh sửa hồ sơ</h1><p class="muted">Cập nhật thông tin hiển thị trên hệ thống.</p><form method="post" class="form-panel">{% csrf_token %}{% for field in form %}<div class="form-field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endfor %}<div class="form-actions"><a class="button button-secondary" href="{% url 'registrations:profile' %}">Hủy</a><button class="button button-primary" type="submit">Lưu thay đổi</button></div></form></section>
+{% endblock %}
